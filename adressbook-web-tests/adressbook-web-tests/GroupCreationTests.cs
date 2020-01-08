@@ -39,10 +39,10 @@ namespace WebAddressBookTests
         public void GroupCreationTest()
         {
             OpenHomePage();
-            Login("admin","secret");
+            Login(new AccountData("admin","secret"));
             GoToGroupsPage();
             InitGroupCreation();
-            FillGroupForms("aa","bb","cc");
+            FillGroupForms(new GroupData("aaa"));
             SubmitGroupCreation();
             ReturnToGroupPage();
             Logout();
@@ -63,14 +63,14 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("submit")).Click();
         }
 
-        private void FillGroupForms(string name, string header, string footer)
+        private void FillGroupForms(GroupData group)
         {
             driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).SendKeys(name);
+            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
             driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).SendKeys(header);
+            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
             driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).SendKeys(footer);
+            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
             
         }
 
@@ -84,10 +84,10 @@ namespace WebAddressBookTests
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        private void Login(string userName, string password)
+        private void Login(AccountData account)
         {
-            driver.FindElement(By.Name("user")).SendKeys(userName);
-            driver.FindElement(By.Name("pass")).SendKeys(password);
+            driver.FindElement(By.Name("user")).SendKeys(account.UserName);
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("input:nth-child(7)")).Click();
         }
 
