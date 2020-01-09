@@ -40,7 +40,15 @@ public class AccountCreationTest
         OpenHomePage();
         Login(new AccountData("admin", "secret"));
         InitiateAccountCreation();
-        FillAccountForms(new GroupData("NameTest"));
+        GroupData group = new GroupData("NameTest");
+        group.Header = "Header";
+        group.Footer = "Footer";
+        group.Address2 = "Address2";
+        group.Company = "Company";
+        group.FirstName = "FirstName";
+        group.LastName = "LastName";
+
+        FillAccountForms(group);
         GoToHomePage();
         Logout();
     }
