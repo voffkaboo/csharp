@@ -13,89 +13,89 @@ using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
 using WebAddressBookTests;
 
-
-[TestFixture]
-public class AccountCreationTest
+namespace WebAddressBookTests
 {
-    private IWebDriver driver;
-    public IDictionary<string, object> vars { get; private set; }
-    private IJavaScriptExecutor js;
-
-    [SetUp]
-    public void SetUp()
+    [TestFixture]
+    public class AccountCreationTest
     {
-        driver = new ChromeDriver();
-        js = (IJavaScriptExecutor)driver;
-        vars = new Dictionary<string, object>();
-    }
+        private IWebDriver driver;
+        public IDictionary<string, object> vars { get; private set; }
+        private IJavaScriptExecutor js;
 
-    [TearDown]
-    protected void TearDown()
-    {
-        driver.Quit();
-    }
-    [Test]
-    public void accountCreation()
-    {
-        OpenHomePage();
-        Login(new AccountData("admin", "secret"));
-        InitiateAccountCreation();
-        GroupData group = new GroupData("NameTest");
-        group.Header = "Header";
-        group.Footer = "Footer";
-        group.Address2 = "Address2";
-        group.Company = "Company";
-        group.FirstName = "FirstName";
-        group.LastName = "LastName";
+        [SetUp]
+        public void SetUp()
+        {
+            driver = new ChromeDriver();
+            js = (IJavaScriptExecutor)driver;
+            vars = new Dictionary<string, object>();
+        }
 
-        FillAccountForms(group);
-        GoToHomePage();
-        Logout();
-    }
+        [TearDown]
+        protected void TearDown()
+        {
+            driver.Quit();
+        }
+        [Test]
+        public void accountCreation()
+        {
+            OpenHomePage();
+            Login(new AccountData("admin", "secret"));
+            InitiateAccountCreation();
+            UserData user = new UserData("FirstNameTest", "SecondNameTest","MiddleNameTest");
+            user.Address2 = "Address2";
+            user.Company = "Company";
+            user.FirstName = "FirstName";
+            user.LastName = "LastName";
 
-    private void Logout()
-    {
-        driver.FindElement(By.LinkText("Logout")).Click();
-    }
+            FillAccountForms(user);
+            GoToHomePage();
+            Logout();
+        }
 
-    private void GoToHomePage()
-    {
-        driver.FindElement(By.LinkText("home page")).Click();
-    }
+        private void Logout()
+        {
+            driver.FindElement(By.LinkText("Logout")).Click();
+        }
 
-    private void FillAccountForms(GroupData group)
-    {
-        driver.FindElement(By.Name("firstname")).Click();
-        driver.FindElement(By.Name("firstname")).SendKeys(group.FirstName);
-        driver.FindElement(By.Name("middlename")).SendKeys(group.MiddleName);
-        driver.FindElement(By.Name("lastname")).SendKeys(group.LastName);
-        driver.FindElement(By.Name("nickname")).SendKeys(group.NickName);
-        driver.FindElement(By.Name("title")).SendKeys(group.Title);
-        driver.FindElement(By.Name("company")).SendKeys(group.Company);
-        driver.FindElement(By.Name("address")).SendKeys(group.Address);
-        driver.FindElement(By.Name("home")).SendKeys(group.Home);
-        driver.FindElement(By.Name("mobile")).SendKeys(group.Mobile);
-        driver.FindElement(By.Name("work")).SendKeys(group.Work);
-        driver.FindElement(By.Name("address2")).Click();
-        driver.FindElement(By.Name("address2")).SendKeys(group.Address2);
-        driver.FindElement(By.CssSelector("input:nth-child(87)")).Click();
-    }
+        private void GoToHomePage()
+        {
+            driver.FindElement(By.LinkText("home page")).Click();
+        }
 
-    private void InitiateAccountCreation()
-    {
-        driver.FindElement(By.LinkText("add new")).Click();
-    }
+        private void FillAccountForms(UserData user)
+        {
+            driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).SendKeys(user.FirstName);
+            driver.FindElement(By.Name("middlename")).SendKeys(user.MiddleName);
+            driver.FindElement(By.Name("lastname")).SendKeys(user.LastName);
+            driver.FindElement(By.Name("nickname")).SendKeys(user.NickName);
+            driver.FindElement(By.Name("title")).SendKeys(user.Title);
+            driver.FindElement(By.Name("company")).SendKeys(user.Company);
+            driver.FindElement(By.Name("address")).SendKeys(user.Address);
+            driver.FindElement(By.Name("home")).SendKeys(user.Home);
+            driver.FindElement(By.Name("mobile")).SendKeys(user.Mobile);
+            driver.FindElement(By.Name("work")).SendKeys(user.Work);
+            driver.FindElement(By.Name("address2")).Click();
+            driver.FindElement(By.Name("address2")).SendKeys(user.Address2);
+            driver.FindElement(By.CssSelector("input:nth-child(87)")).Click();
+        }
 
-    private void Login(AccountData account)
-    {
-        driver.FindElement(By.Name("user")).SendKeys(account.UserName);
-        driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-        driver.FindElement(By.CssSelector("input:nth-child(7)")).Click();
-    }
+        private void InitiateAccountCreation()
+        {
+            driver.FindElement(By.LinkText("add new")).Click();
+        }
 
-    private void OpenHomePage()
-    {
-        driver.Navigate().GoToUrl("http://localhost/addressbook/");
-        driver.Manage().Window.Size = new System.Drawing.Size(1050, 708);
+        private void Login(AccountData account)
+        {
+            driver.FindElement(By.Name("user")).SendKeys(account.UserName);
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
+            driver.FindElement(By.CssSelector("input:nth-child(7)")).Click();
+        }
+
+        private void OpenHomePage()
+        {
+            driver.Navigate().GoToUrl("http://localhost/addressbook/");
+            driver.Manage().Window.Size = new System.Drawing.Size(1050, 708);
+        }
     }
 }
