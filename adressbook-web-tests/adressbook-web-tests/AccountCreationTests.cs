@@ -42,7 +42,7 @@ namespace WebAddressBookTests
             Login(new AccountData("admin", "secret"));
             InitiateAccountCreation();
             UserData user = new UserData("FirstNameTest", "SecondNameTest","MiddleNameTest");
-            user.Address2 = "Address2";
+            user.SecondAddress = "Address2";
             user.Company = "Company";
             user.FirstName = "FirstName";
             user.LastName = "LastName";
@@ -72,13 +72,62 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("title")).SendKeys(user.Title);
             driver.FindElement(By.Name("company")).SendKeys(user.Company);
             driver.FindElement(By.Name("address")).SendKeys(user.Address);
-            driver.FindElement(By.Name("home")).SendKeys(user.Home);
-            driver.FindElement(By.Name("mobile")).SendKeys(user.Mobile);
-            driver.FindElement(By.Name("work")).SendKeys(user.Work);
+            driver.FindElement(By.Name("home")).SendKeys(user.PhoneHome);
+            driver.FindElement(By.Name("mobile")).SendKeys(user.PhoneMobile);
+            driver.FindElement(By.Name("work")).SendKeys(user.PhoneWork);
+            driver.FindElement(By.Name("title")).SendKeys(user.Title);
+            driver.FindElement(By.Name("company")).SendKeys(user.Company);
+            driver.FindElement(By.Name("address")).SendKeys(user.Address);
+            driver.FindElement(By.Name("fax")).SendKeys(user.Fax);
+            driver.FindElement(By.Name("email")).SendKeys(user.Email1);
+            driver.FindElement(By.Name("email2")).SendKeys(user.Email2);
+            driver.FindElement(By.Name("email3")).SendKeys(user.Email3);
+            driver.FindElement(By.Name("homepage")).SendKeys(user.Homepage);
+
+            /*driver.FindElement(By.Name("photo")).Click();
+            driver.FindElement(By.Name("photo")).SendKeys("C:\\fakepath\\1111.jpg");*/
+            /*
+            driver.FindElement(By.Name("bday")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("bday"));
+                dropdown.FindElement(By.XPath("//option[. = '2']")).Click();
+            }
+            driver.FindElement(By.Name("bday")).Click();
+            driver.FindElement(By.Name("bmonth")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("bmonth"));
+                dropdown.FindElement(By.XPath("//option[. = 'April']")).Click();
+            }
+            driver.FindElement(By.Name("bmonth")).Click();
+            driver.FindElement(By.Name("byear")).Click();
+            driver.FindElement(By.Name("byear")).SendKeys("ghfh");
+            driver.FindElement(By.Name("aday")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("aday"));
+                dropdown.FindElement(By.XPath("//option[. = '15']")).Click();
+            }
+            driver.FindElement(By.Name("aday")).Click();
+            driver.FindElement(By.Name("amonth")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("amonth"));
+                dropdown.FindElement(By.XPath("//option[. = 'January']")).Click();
+            }
+            driver.FindElement(By.Name("amonth")).Click();
+            driver.FindElement(By.Name("ayear")).Click();
+            driver.FindElement(By.Name("theform")).Click();
+            driver.FindElement(By.Name("byear")).SendKeys("1990");
+            driver.FindElement(By.Name("ayear")).Click();
+            driver.FindElement(By.Name("ayear")).SendKeys("2005");*/
+
+            driver.FindElement(By.Name("bday")).SendKeys(user.Bday);
             driver.FindElement(By.Name("address2")).Click();
-            driver.FindElement(By.Name("address2")).SendKeys(user.Address2);
+            driver.FindElement(By.Name("address2")).SendKeys(user.SecondAddress);
+            driver.FindElement(By.Name("phone2")).Click();
+            driver.FindElement(By.Name("phone2")).SendKeys(user.PhoneHome2);
+            driver.FindElement(By.Name("notes")).Click();
+            driver.FindElement(By.Name("notes")).SendKeys(user.Notes);
             driver.FindElement(By.CssSelector("input:nth-child(87)")).Click();
-        }
+            }
 
         private void InitiateAccountCreation()
         {
