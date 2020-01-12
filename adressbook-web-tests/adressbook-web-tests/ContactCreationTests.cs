@@ -40,12 +40,7 @@ namespace WebAddressBookTests
             Login(new AccountData("admin", "secret"));
             InitiateAccountCreation();
             ContactData user = new ContactData("FirstNameTest", "SecondNameTest","MiddleNameTest");
-            user.SecondAddress = "Address2";
-            user.Company = "Company";
-            user.FirstName = "FirstName";
-            user.LastName = "LastName";
-
-            FillAccountForms(user);
+            FillContactForms(user);
             GoToHomePage();
             Logout();
         }
@@ -60,7 +55,7 @@ namespace WebAddressBookTests
             driver.FindElement(By.LinkText("home page")).Click();
         }
 
-        private void FillAccountForms(ContactData user)
+        private void FillContactForms(ContactData user)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).SendKeys(user.FirstName);
