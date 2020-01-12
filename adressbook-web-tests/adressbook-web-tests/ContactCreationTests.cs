@@ -52,7 +52,7 @@ namespace WebAddressBookTests
 
         private void GoToHomePage()
         {
-            driver.FindElement(By.LinkText("home page")).Click();
+            driver.FindElement(By.XPath("//*[@id='content']/div/i/a[2]")).Click();
         }
 
         private void FillContactForms(ContactData user)
