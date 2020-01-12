@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebAddressBookTests
 {
-    class UserData
+    class ContactData
     {
 
         public string LastName { get; set; } = "DefaultLastName";
@@ -29,7 +29,13 @@ namespace WebAddressBookTests
         public string SecondAddress { get; set; } = "DefaultSecondAddress";
         public string PhoneHome2 { get; set; } = "7777777777777";
         public string Notes { get; set; } = "";
-        public UserData(string firstname, string lastname, string middlename)
+        public string BirthDay { get; set; } = "3";
+        public string BirthMonth { get; set; } = "February";
+        public string BirthYear { get; set; } = "2000";
+        public string AnniversaryDay { get; set; } = "9";
+        public string AnniversaryMonth { get; set; } = "February";
+        public string AnniversaryYear { get; set; } = "2019";
+        public ContactData(string firstname, string lastname, string middlename)
         {
             this.FirstName = firstname;
             this.LastName = lastname;

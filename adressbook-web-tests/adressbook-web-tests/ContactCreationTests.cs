@@ -41,7 +41,7 @@ namespace WebAddressBookTests
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
             InitiateAccountCreation();
-            UserData user = new UserData("FirstNameTest", "SecondNameTest","MiddleNameTest");
+            ContactData user = new ContactData("FirstNameTest", "SecondNameTest","MiddleNameTest");
             user.SecondAddress = "Address2";
             user.Company = "Company";
             user.FirstName = "FirstName";
@@ -54,7 +54,7 @@ namespace WebAddressBookTests
 
         private void Logout()
         {
-            driver.FindElement(By.LinkText("Logout")).Click();
+            driver.FindElement(By.XPath("//*[@id='top']/form/a")).Click();
         }
 
         private void GoToHomePage()
@@ -62,7 +62,7 @@ namespace WebAddressBookTests
             driver.FindElement(By.LinkText("home page")).Click();
         }
 
-        private void FillAccountForms(UserData user)
+        private void FillAccountForms(ContactData user)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).SendKeys(user.FirstName);
@@ -84,41 +84,6 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("email3")).SendKeys(user.Email3);
             driver.FindElement(By.Name("homepage")).SendKeys(user.Homepage);
 
-            /*driver.FindElement(By.Name("photo")).Click();
-            driver.FindElement(By.Name("photo")).SendKeys("C:\\fakepath\\1111.jpg");*/
-            /*
-            driver.FindElement(By.Name("bday")).Click();
-            {
-                var dropdown = driver.FindElement(By.Name("bday"));
-                dropdown.FindElement(By.XPath("//option[. = '2']")).Click();
-            }
-            driver.FindElement(By.Name("bday")).Click();
-            driver.FindElement(By.Name("bmonth")).Click();
-            {
-                var dropdown = driver.FindElement(By.Name("bmonth"));
-                dropdown.FindElement(By.XPath("//option[. = 'April']")).Click();
-            }
-            driver.FindElement(By.Name("bmonth")).Click();
-            driver.FindElement(By.Name("byear")).Click();
-            driver.FindElement(By.Name("byear")).SendKeys("ghfh");
-            driver.FindElement(By.Name("aday")).Click();
-            {
-                var dropdown = driver.FindElement(By.Name("aday"));
-                dropdown.FindElement(By.XPath("//option[. = '15']")).Click();
-            }
-            driver.FindElement(By.Name("aday")).Click();
-            driver.FindElement(By.Name("amonth")).Click();
-            {
-                var dropdown = driver.FindElement(By.Name("amonth"));
-                dropdown.FindElement(By.XPath("//option[. = 'January']")).Click();
-            }
-            driver.FindElement(By.Name("amonth")).Click();
-            driver.FindElement(By.Name("ayear")).Click();
-            driver.FindElement(By.Name("theform")).Click();
-            driver.FindElement(By.Name("byear")).SendKeys("1990");
-            driver.FindElement(By.Name("ayear")).Click();
-            driver.FindElement(By.Name("ayear")).SendKeys("2005");*/
-
             driver.FindElement(By.Name("bday")).SendKeys(user.Bday);
             driver.FindElement(By.Name("address2")).Click();
             driver.FindElement(By.Name("address2")).SendKeys(user.SecondAddress);
@@ -126,8 +91,47 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("phone2")).SendKeys(user.PhoneHome2);
             driver.FindElement(By.Name("notes")).Click();
             driver.FindElement(By.Name("notes")).SendKeys(user.Notes);
-            driver.FindElement(By.CssSelector("input:nth-child(87)")).Click();
+            this.SelectBirthday(user);
+            this.SelectAnniversaryDate(user);
+            driver.FindElement(By.CssSelector("input[type='submit']~input[type='submit']")).Click();
             }
+        private void SelectBirthday(ContactData user)
+        {
+            driver.FindElement(By.Name("bday")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("bday"));
+                dropdown.FindElement(By.XPath($"//select[@name='bday']/option[@value='{user.BirthDay}']")).Click();
+            }
+            driver.FindElement(By.Name("bday")).Click();
+            driver.FindElement(By.Name("bmonth")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("bmonth"));
+                dropdown.FindElement(By.XPath($"//select[@name='bmonth']/option[@value='{user.BirthMonth}']")).Click();
+            }
+            driver.FindElement(By.Name("bmonth")).Click();
+            driver.FindElement(By.Name("byear")).Click();
+            driver.FindElement(By.Name("byear")).SendKeys(user.BirthYear);
+        }
+
+        private void SelectAnniversaryDate(ContactData user)
+        {
+            driver.FindElement(By.Name("aday")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("aday"));
+                dropdown.FindElement(By.XPath($"//select[@name='aday']/option[@value='{user.AnniversaryDay}']")).Click();
+            }
+            driver.FindElement(By.Name("aday")).Click();
+            driver.FindElement(By.Name("aday")).SendKeys(user.AnniversaryDay);
+            driver.FindElement(By.Name("amonth")).Click();
+            {
+                var dropdown = driver.FindElement(By.Name("amonth"));
+                dropdown.FindElement(By.XPath($"//select[@name='amonth']/option[@value='{user.AnniversaryMonth}']")).Click();
+            }
+            driver.FindElement(By.Name("amonth")).Click();
+            driver.FindElement(By.Name("amonth")).SendKeys(user.AnniversaryMonth);
+            driver.FindElement(By.Name("ayear")).Click();
+            driver.FindElement(By.Name("ayear")).SendKeys(user.AnniversaryYear);
+        }
 
         private void InitiateAccountCreation()
         {
@@ -138,7 +142,7 @@ namespace WebAddressBookTests
         {
             driver.FindElement(By.Name("user")).SendKeys(account.UserName);
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.CssSelector("input:nth-child(7)")).Click();
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
         }
 
         private void OpenHomePage()

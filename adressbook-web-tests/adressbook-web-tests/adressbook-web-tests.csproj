@@ -60,12 +60,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountCreationTests.cs" />
+    <Compile Include="ContactCreationTests.cs" />
     <Compile Include="AccountData.cs" />
     <Compile Include="GroupData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTests.cs" />
-    <Compile Include="UserData.cs" />
+    <Compile Include="ContactData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
