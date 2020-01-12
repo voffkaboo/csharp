@@ -19,7 +19,6 @@ namespace WebAddressBookTests
     public class AccountCreationTest
     {
         private IWebDriver driver;
-        public IDictionary<string, object> vars { get; private set; }
         private IJavaScriptExecutor js;
 
         [SetUp]
@@ -27,7 +26,6 @@ namespace WebAddressBookTests
         {
             driver = new ChromeDriver();
             js = (IJavaScriptExecutor)driver;
-            vars = new Dictionary<string, object>();
         }
 
         [TearDown]
@@ -36,7 +34,7 @@ namespace WebAddressBookTests
             driver.Quit();
         }
         [Test]
-        public void accountCreation()
+        public void AccountCreation()
         {
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
@@ -69,6 +67,10 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("middlename")).SendKeys(user.MiddleName);
             driver.FindElement(By.Name("lastname")).SendKeys(user.LastName);
             driver.FindElement(By.Name("nickname")).SendKeys(user.NickName);
+            //file uploading
+            string pathToFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img.jpg");
+            driver.FindElement(By.Name("photo")).SendKeys(pathToFile);
+          
             driver.FindElement(By.Name("title")).SendKeys(user.Title);
             driver.FindElement(By.Name("company")).SendKeys(user.Company);
             driver.FindElement(By.Name("address")).SendKeys(user.Address);
