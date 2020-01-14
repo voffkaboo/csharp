@@ -69,7 +69,6 @@ namespace WebAddressBookTests
             destinationPath = Path.Combine(destinationPath, fileName);
             string sourcePath = Path.Combine(workingDirectory, @"IMG\", fileName);
             File.Copy(sourcePath, destinationPath);
-
             string pathToFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img.jpg");
             driver.FindElement(By.Name("photo")).SendKeys(pathToFile);
           
