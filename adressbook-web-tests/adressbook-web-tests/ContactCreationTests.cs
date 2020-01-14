@@ -12,6 +12,7 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
 using WebAddressBookTests;
+using System.IO;
 
 namespace WebAddressBookTests
 {
@@ -19,13 +20,11 @@ namespace WebAddressBookTests
     public class AccountCreationTest
     {
         private IWebDriver driver;
-        private IJavaScriptExecutor js;
-
+        
         [SetUp]
         public void SetUp()
         {
             driver = new ChromeDriver();
-            js = (IJavaScriptExecutor)driver;
         }
 
         [TearDown]
@@ -63,6 +62,14 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("lastname")).SendKeys(user.LastName);
             driver.FindElement(By.Name("nickname")).SendKeys(user.NickName);
             //file uploading
+            string fileName = "img.jpg";
+            string workingDirectory = Directory.GetParent(TestContext.CurrentContext.TestDirectory).Parent.FullName;
+            string destinationPath = AppDomain.CurrentDomain.BaseDirectory;
+            
+            destinationPath = Path.Combine(destinationPath, fileName);
+            string sourcePath = Path.Combine(workingDirectory, @"IMG\", fileName);
+            File.Copy(sourcePath, destinationPath);
+
             string pathToFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img.jpg");
             driver.FindElement(By.Name("photo")).SendKeys(pathToFile);
           
