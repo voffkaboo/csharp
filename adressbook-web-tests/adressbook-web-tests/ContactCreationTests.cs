@@ -62,16 +62,9 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("lastname")).SendKeys(user.LastName);
             driver.FindElement(By.Name("nickname")).SendKeys(user.NickName);
             //file uploading
-            string fileName = "img.jpg";
-            string workingDirectory = Directory.GetParent(TestContext.CurrentContext.TestDirectory).Parent.FullName;
-            string destinationPath = AppDomain.CurrentDomain.BaseDirectory;
-            
-            destinationPath = Path.Combine(destinationPath, fileName);
-            string sourcePath = Path.Combine(workingDirectory, @"IMG\", fileName);
-            File.Copy(sourcePath, destinationPath);
-            string pathToFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img.jpg");
-            driver.FindElement(By.Name("photo")).SendKeys(pathToFile);
-          
+            driver.FindElement(By.Name("photo")).SendKeys(Path
+                .Combine(TestContext.CurrentContext.TestDirectory, @"IMAGE\", "img.jpg"));
+                  
             driver.FindElement(By.Name("title")).SendKeys(user.Title);
             driver.FindElement(By.Name("company")).SendKeys(user.Company);
             driver.FindElement(By.Name("address")).SendKeys(user.Address);
@@ -86,7 +79,6 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("email2")).SendKeys(user.Email2);
             driver.FindElement(By.Name("email3")).SendKeys(user.Email3);
             driver.FindElement(By.Name("homepage")).SendKeys(user.Homepage);
-
             driver.FindElement(By.Name("bday")).SendKeys(user.Bday);
             driver.FindElement(By.Name("address2")).Click();
             driver.FindElement(By.Name("address2")).SendKeys(user.SecondAddress);
