@@ -25,7 +25,6 @@ namespace WebAddressBookTests
         public string Email3 { get; set; } = "Default3@i.ua";
         public string Homepage { get; set; } = "Default.com.ua";
         public string Bday { get; set; } = "";
-        public string Anniversary { get; set; } = "";
         public string SecondAddress { get; set; } = "DefaultSecondAddress";
         public string PhoneHome2 { get; set; } = "7777777777777";
         public string Notes { get; set; } = "";
@@ -41,6 +40,5 @@ namespace WebAddressBookTests
             this.LastName = lastname;
             this.MiddleName = middlename;
         }
-
     }
 }

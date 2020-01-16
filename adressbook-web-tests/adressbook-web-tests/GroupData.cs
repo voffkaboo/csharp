@@ -15,11 +15,5 @@ namespace WebAddressBookTests
         {
             this.Name = name;
         }
-        public GroupData(string name, string header, string footer)
-        {
-            this.Name = name;
-            this.Header = header;
-            this.Footer = footer;
-        }
     }
 }
