@@ -54,7 +54,6 @@ namespace WebAddressBookTests
             //file uploading
             driver.FindElement(By.Name("photo")).SendKeys(Path
                 .Combine(TestContext.CurrentContext.TestDirectory, @"IMAGE\", "img.jpg"));
-                  
             driver.FindElement(By.Name("title")).SendKeys(user.Title);
             driver.FindElement(By.Name("company")).SendKeys(user.Company);
             driver.FindElement(By.Name("address")).SendKeys(user.Address);
@@ -83,11 +82,11 @@ namespace WebAddressBookTests
         private void SelectBirthday(ContactData user)
         {
             driver.FindElement(By.Name("bday")).Click();
-                var dropdownBday = driver.FindElement(By.Name("bday"));
+            var dropdownBday = driver.FindElement(By.Name("bday"));
             dropdownBday.FindElement(By.XPath($"//select[@name='bday']/option[@value='{user.BirthDay}']")).Click();
             driver.FindElement(By.Name("bday")).Click();
             driver.FindElement(By.Name("bmonth")).Click();
-                var dropdownBMonth = driver.FindElement(By.Name("bmonth"));
+            var dropdownBMonth = driver.FindElement(By.Name("bmonth"));
             dropdownBMonth.FindElement(By.XPath($"//select[@name='bmonth']/option[@value='{user.BirthMonth}']")).Click();
             driver.FindElement(By.Name("bmonth")).Click();
             driver.FindElement(By.Name("byear")).Click();
@@ -97,12 +96,12 @@ namespace WebAddressBookTests
         private void SelectAnniversaryDate(ContactData user)
         {
             driver.FindElement(By.Name("aday")).Click();
-                var dropdownADay = driver.FindElement(By.Name("aday"));
+            var dropdownADay = driver.FindElement(By.Name("aday"));
             dropdownADay.FindElement(By.XPath($"//select[@name='aday']/option[@value='{user.AnniversaryDay}']")).Click();
             driver.FindElement(By.Name("aday")).Click();
             driver.FindElement(By.Name("aday")).SendKeys(user.AnniversaryDay);
             driver.FindElement(By.Name("amonth")).Click();
-                var dropdownAMonth = driver.FindElement(By.Name("amonth"));
+            var dropdownAMonth = driver.FindElement(By.Name("amonth"));
             dropdownAMonth.FindElement(By.XPath($"//select[@name='amonth']/option[@value='{user.AnniversaryMonth}']")).Click();
             driver.FindElement(By.Name("amonth")).Click();
             driver.FindElement(By.Name("amonth")).SendKeys(user.AnniversaryMonth);
