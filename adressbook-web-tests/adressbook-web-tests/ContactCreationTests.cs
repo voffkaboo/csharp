@@ -9,11 +9,11 @@ namespace WebAddressBookTests
         [Test]
         public void AccountCreation()
         {
-            OpenHomePage();
+            navigationHelper.OpenHomePage();
             loginHelper.Login(new AccountData("admin", "secret"));
-            InitiateAccountCreation();
+            contactHelper.InitiateContactCreation();
             ContactData user = new ContactData("FirstNameTest", "SecondNameTest","MiddleNameTest");
-            FillContactForms(user);
+            contactHelper.FillContactForms(user);
             Logout();
         }                        
     }

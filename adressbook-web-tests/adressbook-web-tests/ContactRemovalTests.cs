@@ -9,11 +9,11 @@ namespace WebAddressBookTests
         [Test]
         public void ContactRemovalTest()
         {
-            OpenHomePage();
+            navigationHelper.OpenHomePage();
             loginHelper.Login(new AccountData("admin", "secret"));
-            SelectContact(1);
-            RemoveContact();
-            AcceptRemovalViaPopUp();
+            contactHelper.SelectContact(1);
+            contactHelper.RemoveContact();
+            contactHelper.AcceptRemovalViaPopUp();
         }       
     }
 }
