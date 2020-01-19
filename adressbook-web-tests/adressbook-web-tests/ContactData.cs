@@ -1,6 +1,6 @@
 ﻿namespace WebAddressBookTests
 {
-    class ContactData
+    public class ContactData
     {
 
         public string LastName { get; set; } = "DefaultLastName";
