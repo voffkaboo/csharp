@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace WebAddressBookTests
 {
@@ -14,6 +15,7 @@ namespace WebAddressBookTests
 
         public AppManager()
         {
+            driver = new ChromeDriver();
             loginHelper = new LoginHelper(driver);
             navigationHelper = new NavigationHelper(driver);
             groupHelper = new GroupHelper(driver);
