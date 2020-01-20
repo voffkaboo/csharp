@@ -4,22 +4,16 @@ using System.IO;
 
 namespace WebAddressBookTests
 {
-    public class ContactHelper
+    public class ContactHelper : HelperBase
     {
-        private IWebDriver driver;
-
-        public ContactHelper(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
+        public ContactHelper(IWebDriver driver) : base(driver) { }
         public void RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
         }
         public void AcceptRemovalViaPopUp()
         {
-            driver.SwitchTo().Alert().Accept();
-            //Assert.That(driver.SwitchTo().Alert().Text, Is.EqualTo("Delete 1 addresses?"));
+            driver.SwitchTo().Alert().Accept();            
         }
 
         public void SelectContact(int index)

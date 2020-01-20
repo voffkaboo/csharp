@@ -2,14 +2,9 @@
 
 namespace WebAddressBookTests
 {
-    public class NavigationHelper
+    public class NavigationHelper : HelperBase
     {
-        private IWebDriver driver;
-
-        public NavigationHelper(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
+        public NavigationHelper(IWebDriver driver) : base(driver) { }
         public void OpenHomePage()
         {
             driver.Navigate().GoToUrl("http://localhost/addressbook/");
