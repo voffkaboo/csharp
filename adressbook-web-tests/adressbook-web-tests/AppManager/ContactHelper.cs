@@ -24,14 +24,13 @@ namespace WebAddressBookTests
             SelectContact(v);
             InitiateContactModification();
             FillContactForms(modifyData);
-            SubmitContactModification();
             manager.Navigator.GoToGroupsPage();
             return this;
         }
 
         public ContactHelper SubmitContactModification()
         {
-            driver.FindElement(By.XPath("(//input[@type='submit'])")).Click();
+            driver.FindElement(By.CssSelector("input[type='submit']")).Click();
             return this;
         }
 
@@ -108,7 +107,7 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("aday")).SendKeys(user.AnniversaryDay);
             driver.FindElement(By.Name("amonth")).Click();
             var dropdownAMonth = driver.FindElement(By.Name("amonth"));
-            dropdownAMonth.FindElement(By.XPath($"//select[@name='amonth']/option[@value='{user.AnniversaryMonth}']")).Click();
+            dropdownAMonth.FindElement(By.CssSelector($"option[value='{user.AnniversaryMonth}']")).Click();
             driver.FindElement(By.Name("amonth")).Click();
             driver.FindElement(By.Name("amonth")).SendKeys(user.AnniversaryMonth);
             driver.FindElement(By.Name("ayear")).Click();
