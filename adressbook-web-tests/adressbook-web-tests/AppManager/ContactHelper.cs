@@ -6,23 +6,26 @@ namespace WebAddressBookTests
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(IWebDriver driver) : base(driver) { }
-        public void RemoveContact()
+        public ContactHelper(AppManager manager) : base(manager) { }
+        public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
         }
-        public void AcceptRemovalViaPopUp()
+        public ContactHelper AcceptRemovalViaPopUp()
         {
-            driver.SwitchTo().Alert().Accept();            
+            driver.SwitchTo().Alert().Accept();
+            return this;
         }
 
-        public void SelectContact(int index)
+        public ContactHelper SelectContact(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
         }
 
 
-        public void FillContactForms(ContactData user)
+        public ContactHelper FillContactForms(ContactData user)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).SendKeys(user.FirstName);
@@ -56,8 +59,9 @@ namespace WebAddressBookTests
             this.SelectBirthday(user);
             this.SelectAnniversaryDate(user);
             driver.FindElement(By.CssSelector("input[type='submit']~input[type='submit']")).Click();
+            return this;
         }
-        protected void SelectBirthday(ContactData user)
+        protected ContactHelper SelectBirthday(ContactData user)
         {
             driver.FindElement(By.Name("bday")).Click();
             var dropdownBday = driver.FindElement(By.Name("bday"));
@@ -69,9 +73,10 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("bmonth")).Click();
             driver.FindElement(By.Name("byear")).Click();
             driver.FindElement(By.Name("byear")).SendKeys(user.BirthYear);
+            return this;
         }
 
-        protected void SelectAnniversaryDate(ContactData user)
+        protected ContactHelper SelectAnniversaryDate(ContactData user)
         {
             driver.FindElement(By.Name("aday")).Click();
             var dropdownADay = driver.FindElement(By.Name("aday"));
@@ -85,11 +90,13 @@ namespace WebAddressBookTests
             driver.FindElement(By.Name("amonth")).SendKeys(user.AnniversaryMonth);
             driver.FindElement(By.Name("ayear")).Click();
             driver.FindElement(By.Name("ayear")).SendKeys(user.AnniversaryYear);
+            return this;
         }
 
-        public void InitiateContactCreation()
+        public ContactHelper InitiateContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
     }
 }

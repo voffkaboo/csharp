@@ -9,11 +9,9 @@ namespace WebAddressBookTests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.Contact.SelectContact(1);
-            app.Contact.RemoveContact();
-            app.Contact.AcceptRemovalViaPopUp();
+         app.Contact.SelectContact(1)
+                    .RemoveContact()
+                    .AcceptRemovalViaPopUp();
         }       
     }
 }

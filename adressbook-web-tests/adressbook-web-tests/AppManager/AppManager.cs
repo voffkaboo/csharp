@@ -16,13 +16,20 @@ namespace WebAddressBookTests
         public AppManager()
         {
             driver = new ChromeDriver();
-            loginHelper = new LoginHelper(driver);
-            navigationHelper = new NavigationHelper(driver);
-            groupHelper = new GroupHelper(driver);
-            contactHelper = new ContactHelper(driver);
-            logoutHelper = new LogoutHelper(driver);
+            loginHelper = new LoginHelper(this);
+            navigationHelper = new NavigationHelper(this);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
+            logoutHelper = new LogoutHelper(this);
         }
 
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
+        }
         public LoginHelper Auth
         {
             get => loginHelper;
@@ -43,7 +50,6 @@ namespace WebAddressBookTests
         {
             get => logoutHelper;
         }
-
         public void Stop()
         {
             driver.Quit();

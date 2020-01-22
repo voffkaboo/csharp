@@ -9,8 +9,6 @@ namespace WebAddressBookTests
         [Test]
         public void ContactCreationTest()
         {
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
             app.Contact.InitiateContactCreation();
             ContactData user = new ContactData("FirstNameTest", "SecondNameTest","MiddleNameTest");
             app.Contact.FillContactForms(user);
