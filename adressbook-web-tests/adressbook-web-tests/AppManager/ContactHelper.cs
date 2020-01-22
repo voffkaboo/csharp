@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using System.IO;
 
 namespace WebAddressBookTests
@@ -15,6 +16,28 @@ namespace WebAddressBookTests
         public ContactHelper AcceptRemovalViaPopUp()
         {
             driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        internal ContactHelper Modify(int v, ContactData modifyData)
+        {
+            SelectContact(v);
+            InitiateContactModification();
+            FillContactForms(modifyData);
+            SubmitContactModification();
+            manager.Navigator.GoToGroupsPage();
+            return this;
+        }
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.XPath("(//input[@type='submit'])")).Click();
+            return this;
+        }
+
+        public ContactHelper InitiateContactModification()
+        {
+            driver.FindElement(By.XPath("(//img[@title='Edit'])")).Click();
             return this;
         }
 

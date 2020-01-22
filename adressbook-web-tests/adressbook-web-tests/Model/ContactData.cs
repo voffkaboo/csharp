@@ -26,7 +26,7 @@
         public string BirthMonth { get; set; } = "February";
         public string BirthYear { get; set; } = "2000";
         public string AnniversaryDay { get; set; } = "9";
-        public string AnniversaryMonth { get; set; } = "February";
+        public string AnniversaryMonth { get; set; } = "June";
         public string AnniversaryYear { get; set; } = "2019";
         public ContactData(string firstname, string lastname, string middlename)
         {
