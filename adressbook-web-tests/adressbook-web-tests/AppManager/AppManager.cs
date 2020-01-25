@@ -23,33 +23,12 @@ namespace WebAddressBookTests
             logoutHelper = new LogoutHelper(this);
         }
 
-        public IWebDriver Driver
-        {
-            get
-            {
-                return driver;
-            }
-        }
-        public LoginHelper Auth
-        {
-            get => loginHelper;
-        }
-        public NavigationHelper Navigator
-        {
-            get => navigationHelper;
-        }
-        public GroupHelper Groups
-        {
-            get => groupHelper;
-        }
-        public ContactHelper Contact
-        {
-            get => contactHelper;
-        }
-        public LogoutHelper Logout
-        {
-            get => logoutHelper;
-        }
+        public IWebDriver Driver=> driver;
+        public LoginHelper Auth => loginHelper;
+        public NavigationHelper Navigator => navigationHelper;
+        public GroupHelper Groups => groupHelper;
+        public ContactHelper Contact => contactHelper;
+        public LogoutHelper Logout => logoutHelper;
         public void Stop()
         {
             driver.Quit();
