@@ -6,7 +6,9 @@ namespace WebAddressBookTests
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(AppManager manager) : base(manager) { }
+        public ContactHelper(AppManager manager) : base(manager)
+        {
+        }
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();

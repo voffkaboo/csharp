@@ -5,8 +5,9 @@ namespace WebAddressBookTests
 {
     public class GroupHelper : HelperBase
     {
-        public GroupHelper (AppManager manager) : base(manager) { }
-
+        public GroupHelper (AppManager manager) : base(manager)
+        {
+        }
         public GroupHelper Create(GroupData data)
         {
             manager.Navigator.GoToGroupsPage();
@@ -16,10 +17,10 @@ namespace WebAddressBookTests
             return this;
         }
 
-        internal GroupHelper Modify(int v, GroupData modifyData)
+        internal GroupHelper Modify(int groupIndex, GroupData modifyData)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup(v);
+            SelectGroup(groupIndex);
             InitGroupModification();
             FillGroupForms(modifyData);
             SubmitGroupModification();
@@ -39,10 +40,10 @@ namespace WebAddressBookTests
             return this;
         }
 
-        public GroupHelper RemoveGroup(int v)
+        public GroupHelper RemoveGroup(int groupIndex)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup(v);
+            SelectGroup(groupIndex);
             RemoveGroup();
             return this;
         }

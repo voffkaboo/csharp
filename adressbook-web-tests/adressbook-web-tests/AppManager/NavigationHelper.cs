@@ -4,7 +4,9 @@ namespace WebAddressBookTests
 {
     public class NavigationHelper : HelperBase
     {
-        public NavigationHelper(AppManager manager) : base(manager) { }
+        public NavigationHelper(AppManager manager) : base(manager)
+        {
+        }
         public void OpenHomePage()
         {
             driver.Navigate().GoToUrl("http://localhost/addressbook/");
