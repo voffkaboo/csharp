@@ -5,9 +5,16 @@ using System.IO;
 namespace WebAddressBookTests
 {
     public class ContactHelper : HelperBase
-    {
+    {        
         public ContactHelper(AppManager manager) : base(manager)
         {
+        }
+        public ContactHelper RemoveCntactWithIndex(int contactIndex)
+        {
+            SelectContact(contactIndex);
+            RemoveContact();
+            AcceptRemovalViaPopUp();
+            return this;
         }
         public ContactHelper RemoveContact()
         {
@@ -40,59 +47,123 @@ namespace WebAddressBookTests
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
-
+        
         public ContactHelper FillContactForms(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(contact.MiddleName);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
-            driver.FindElement(By.Name("nickname")).Clear();
-            driver.FindElement(By.Name("nickname")).SendKeys(contact.NickName);
+            
+            if (contact.FirstName!=null)
+            {
+                driver.FindElement(By.Name("firstname")).Clear();
+                driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
+            }
+            if (contact.MiddleName != null)
+            {
+                driver.FindElement(By.Name("middlename")).Clear();
+                driver.FindElement(By.Name("middlename")).SendKeys(contact.MiddleName);
+            }
+            if (contact.LastName != null)
+            {
+                driver.FindElement(By.Name("lastname")).Clear();
+                driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
+            }
+            if (contact.NickName != null)
+            {
+                driver.FindElement(By.Name("nickname")).Clear();
+                driver.FindElement(By.Name("nickname")).SendKeys(contact.NickName);
+            }
+            
             driver.FindElement(By.Name("photo")).Clear();
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, @"IMAGE\", "img.jpg");
             driver.FindElement(By.Name("photo")).SendKeys(path);
-            driver.FindElement(By.Name("title")).Clear();
-            driver.FindElement(By.Name("title")).SendKeys(contact.Title);
-            driver.FindElement(By.Name("company")).Clear();
-            driver.FindElement(By.Name("company")).SendKeys(contact.Company);
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
-            driver.FindElement(By.Name("home")).Clear();
-            driver.FindElement(By.Name("home")).SendKeys(contact.PhoneHome);
-            driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys(contact.PhoneMobile);
-            driver.FindElement(By.Name("work")).Clear();
-            driver.FindElement(By.Name("work")).SendKeys(contact.PhoneWork);
-            driver.FindElement(By.Name("title")).Clear();
-            driver.FindElement(By.Name("title")).SendKeys(contact.Title);
-            driver.FindElement(By.Name("company")).Clear();
-            driver.FindElement(By.Name("company")).SendKeys(contact.Company);
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
-            driver.FindElement(By.Name("fax")).Clear();
-            driver.FindElement(By.Name("fax")).SendKeys(contact.Fax);
-            driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys(contact.Email1);
-            driver.FindElement(By.Name("email2")).Clear();
-            driver.FindElement(By.Name("email2")).SendKeys(contact.Email2);
-            driver.FindElement(By.Name("email3")).Clear();
-            driver.FindElement(By.Name("email3")).SendKeys(contact.Email3);
-            driver.FindElement(By.Name("homepage")).Clear();
-            driver.FindElement(By.Name("homepage")).SendKeys(contact.Homepage);
+
+            if (contact.Title != null)
+            {
+                driver.FindElement(By.Name("title")).Clear();
+                driver.FindElement(By.Name("title")).SendKeys(contact.Title);
+            }
+
+            if (contact.Company != null)
+            {
+                driver.FindElement(By.Name("company")).Clear();
+                driver.FindElement(By.Name("company")).SendKeys(contact.Company);
+            }
+
+            if (contact.Address != null)
+            {
+                driver.FindElement(By.Name("address")).Clear();
+                driver.FindElement(By.Name("address")).SendKeys(contact.Address);
+            }
+
+            if (contact.PhoneHome != null)
+            {
+                driver.FindElement(By.Name("home")).Clear();
+                driver.FindElement(By.Name("home")).SendKeys(contact.PhoneHome);
+            }
+
+            if (contact.PhoneMobile != null)
+            {
+                driver.FindElement(By.Name("mobile")).Clear();
+                driver.FindElement(By.Name("mobile")).SendKeys(contact.PhoneMobile);
+            }
+
+            if (contact.PhoneWork != null)
+            {
+                driver.FindElement(By.Name("work")).Clear();
+                driver.FindElement(By.Name("work")).SendKeys(contact.PhoneWork);
+            }
+
+            if (contact.Fax != null)
+            {
+                driver.FindElement(By.Name("fax")).Clear();
+                driver.FindElement(By.Name("fax")).SendKeys(contact.Fax);
+            }
+
+            if (contact.Email1 != null)
+            {
+                driver.FindElement(By.Name("email")).Clear();
+                driver.FindElement(By.Name("email")).SendKeys(contact.Email1);
+            }
+
+            if (contact.Email2 != null)
+            {
+                driver.FindElement(By.Name("email2")).Clear();
+                driver.FindElement(By.Name("email2")).SendKeys(contact.Email2);
+            }
+
+            if (contact.Email3 != null)
+            {
+                driver.FindElement(By.Name("email3")).Clear();
+                driver.FindElement(By.Name("email3")).SendKeys(contact.Email3);
+            }
+
+            if (contact.Homepage != null)
+            {
+                driver.FindElement(By.Name("homepage")).Clear();
+                driver.FindElement(By.Name("homepage")).SendKeys(contact.Homepage);
+            }
+
+
+            if (contact.SecondAddress != null)
+            {
+                driver.FindElement(By.Name("address2")).Clear();
+                driver.FindElement(By.Name("address2")).SendKeys(contact.SecondAddress);
+            }
+
             this.SelectBirthday(contact);
             this.SelectAnniversaryDate(contact);
-            driver.FindElement(By.Name("address2")).Click();
-            driver.FindElement(By.Name("address2")).Clear();
-            driver.FindElement(By.Name("address2")).SendKeys(contact.SecondAddress);
-            driver.FindElement(By.Name("phone2")).Click();
-            driver.FindElement(By.Name("phone2")).Clear();
-            driver.FindElement(By.Name("phone2")).SendKeys(contact.PhoneHome2);
-            driver.FindElement(By.Name("notes")).Click();
-            driver.FindElement(By.Name("notes")).Clear();
-            driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);            
+
+            if (contact.PhoneHome2 != null)
+            {
+                driver.FindElement(By.Name("phone2")).Clear();
+                driver.FindElement(By.Name("phone2")).SendKeys(contact.PhoneHome2);
+            }
+            
+            if (contact.Notes != null)
+            {
+                driver.FindElement(By.Name("notes")).Clear();
+                driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);
+            }
+            
             driver.FindElement(By.CssSelector("input[type='submit']~input[type='submit']")).Click();
             return this;
         }
