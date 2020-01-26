@@ -46,125 +46,44 @@ namespace WebAddressBookTests
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
-        }
-        
+        }       
+                
         public ContactHelper FillContactForms(ContactData contact)
         {
-            
-            if (contact.FirstName!=null)
-            {
-                driver.FindElement(By.Name("firstname")).Clear();
-                driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
-            }
-            if (contact.MiddleName != null)
-            {
-                driver.FindElement(By.Name("middlename")).Clear();
-                driver.FindElement(By.Name("middlename")).SendKeys(contact.MiddleName);
-            }
-            if (contact.LastName != null)
-            {
-                driver.FindElement(By.Name("lastname")).Clear();
-                driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
-            }
-            if (contact.NickName != null)
-            {
-                driver.FindElement(By.Name("nickname")).Clear();
-                driver.FindElement(By.Name("nickname")).SendKeys(contact.NickName);
-            }
-            
-            driver.FindElement(By.Name("photo")).Clear();
+            FillFieldOnlyIfDataExists("firstname", contact.FirstName);
+            FillFieldOnlyIfDataExists("middlename", contact.MiddleName);
+            FillFieldOnlyIfDataExists("lastname", contact.LastName);
+            FillFieldOnlyIfDataExists("nickname", contact.NickName);
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, @"IMAGE\", "img.jpg");
-            driver.FindElement(By.Name("photo")).SendKeys(path);
-
-            if (contact.Title != null)
-            {
-                driver.FindElement(By.Name("title")).Clear();
-                driver.FindElement(By.Name("title")).SendKeys(contact.Title);
-            }
-
-            if (contact.Company != null)
-            {
-                driver.FindElement(By.Name("company")).Clear();
-                driver.FindElement(By.Name("company")).SendKeys(contact.Company);
-            }
-
-            if (contact.Address != null)
-            {
-                driver.FindElement(By.Name("address")).Clear();
-                driver.FindElement(By.Name("address")).SendKeys(contact.Address);
-            }
-
-            if (contact.PhoneHome != null)
-            {
-                driver.FindElement(By.Name("home")).Clear();
-                driver.FindElement(By.Name("home")).SendKeys(contact.PhoneHome);
-            }
-
-            if (contact.PhoneMobile != null)
-            {
-                driver.FindElement(By.Name("mobile")).Clear();
-                driver.FindElement(By.Name("mobile")).SendKeys(contact.PhoneMobile);
-            }
-
-            if (contact.PhoneWork != null)
-            {
-                driver.FindElement(By.Name("work")).Clear();
-                driver.FindElement(By.Name("work")).SendKeys(contact.PhoneWork);
-            }
-
-            if (contact.Fax != null)
-            {
-                driver.FindElement(By.Name("fax")).Clear();
-                driver.FindElement(By.Name("fax")).SendKeys(contact.Fax);
-            }
-
-            if (contact.Email1 != null)
-            {
-                driver.FindElement(By.Name("email")).Clear();
-                driver.FindElement(By.Name("email")).SendKeys(contact.Email1);
-            }
-
-            if (contact.Email2 != null)
-            {
-                driver.FindElement(By.Name("email2")).Clear();
-                driver.FindElement(By.Name("email2")).SendKeys(contact.Email2);
-            }
-
-            if (contact.Email3 != null)
-            {
-                driver.FindElement(By.Name("email3")).Clear();
-                driver.FindElement(By.Name("email3")).SendKeys(contact.Email3);
-            }
-
-            if (contact.Homepage != null)
-            {
-                driver.FindElement(By.Name("homepage")).Clear();
-                driver.FindElement(By.Name("homepage")).SendKeys(contact.Homepage);
-            }
-
-
-            if (contact.SecondAddress != null)
-            {
-                driver.FindElement(By.Name("address2")).Clear();
-                driver.FindElement(By.Name("address2")).SendKeys(contact.SecondAddress);
-            }
-
-            this.SelectBirthday(contact);
-            this.SelectAnniversaryDate(contact);
-
-            if (contact.PhoneHome2 != null)
-            {
-                driver.FindElement(By.Name("phone2")).Clear();
-                driver.FindElement(By.Name("phone2")).SendKeys(contact.PhoneHome2);
-            }
-            
-            if (contact.Notes != null)
-            {
-                driver.FindElement(By.Name("notes")).Clear();
-                driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);
-            }
+            FillFieldOnlyIfDataExists("photo", path);
+            FillFieldOnlyIfDataExists("title", contact.Title);
+            FillFieldOnlyIfDataExists("company", contact.Company);
+            FillFieldOnlyIfDataExists("address", contact.Address);
+            FillFieldOnlyIfDataExists("home", contact.PhoneHome);
+            FillFieldOnlyIfDataExists("mobile", contact.PhoneMobile);
+            FillFieldOnlyIfDataExists("work", contact.PhoneWork);
+            FillFieldOnlyIfDataExists("fax", contact.Fax);
+            FillFieldOnlyIfDataExists("email", contact.Email1);
+            FillFieldOnlyIfDataExists("emai2", contact.Email2);
+            FillFieldOnlyIfDataExists("emai3", contact.Email3);
+            FillFieldOnlyIfDataExists("homepage", contact.Homepage);
+            FillFieldOnlyIfDataExists("address2", contact.SecondAddress);
+            SelectBirthday(contact);
+            SelectAnniversaryDate(contact);
+            FillFieldOnlyIfDataExists("phone2", contact.PhoneHome2);
+            FillFieldOnlyIfDataExists("notes", contact.Notes);
             
             driver.FindElement(By.CssSelector("input[type='submit']~input[type='submit']")).Click();
+            return this;
+        }
+
+        protected ContactHelper FillFieldOnlyIfDataExists(string fieldName, string contactData)
+        {
+            if (contactData!=null)
+            {
+                driver.FindElement(By.Name(fieldName)).Clear();
+                driver.FindElement(By.Name(fieldName)).SendKeys(contactData);
+            }
             return this;
         }
         protected ContactHelper SelectBirthday(ContactData contact)

@@ -15,7 +15,10 @@ namespace WebAddressBookTests
             modifyData.AnniversaryDay = "3";
             modifyData.AnniversaryMonth = "February";                      
             modifyData.AnniversaryYear = "2018";
-            
+            modifyData.BirthMonth = "July";
+            modifyData.BirthYear = "1991";
+            modifyData.BirthDay = "9";
+
             app.Contact.Modify(1, modifyData);
         }
     }
