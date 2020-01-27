@@ -50,42 +50,43 @@ namespace WebAddressBookTests
                 
         public ContactHelper FillContactForms(ContactData contact)
         {
-            FillFieldOnlyIfDataExists("firstname", contact.FirstName);
-            FillFieldOnlyIfDataExists("middlename", contact.MiddleName);
-            FillFieldOnlyIfDataExists("lastname", contact.LastName);
-            FillFieldOnlyIfDataExists("nickname", contact.NickName);
+            FillFieldOnlyIfDataExists(By.Name("firstname"), contact.FirstName);
+            FillFieldOnlyIfDataExists(By.Name("middlename"), contact.MiddleName);
+            FillFieldOnlyIfDataExists(By.Name("lastname"), contact.LastName);
+            FillFieldOnlyIfDataExists(By.Name("nickname"), contact.NickName);
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory, @"IMAGE\", "img.jpg");
-            FillFieldOnlyIfDataExists("photo", path);
-            FillFieldOnlyIfDataExists("title", contact.Title);
-            FillFieldOnlyIfDataExists("company", contact.Company);
-            FillFieldOnlyIfDataExists("address", contact.Address);
-            FillFieldOnlyIfDataExists("home", contact.PhoneHome);
-            FillFieldOnlyIfDataExists("mobile", contact.PhoneMobile);
-            FillFieldOnlyIfDataExists("work", contact.PhoneWork);
-            FillFieldOnlyIfDataExists("fax", contact.Fax);
-            FillFieldOnlyIfDataExists("email", contact.Email1);
-            FillFieldOnlyIfDataExists("emai2", contact.Email2);
-            FillFieldOnlyIfDataExists("emai3", contact.Email3);
-            FillFieldOnlyIfDataExists("homepage", contact.Homepage);
-            FillFieldOnlyIfDataExists("address2", contact.SecondAddress);
+            FillFieldOnlyIfDataExists(By.Name("photo"), path);
+            FillFieldOnlyIfDataExists(By.Name("title"), contact.Title);
+            FillFieldOnlyIfDataExists(By.Name("company"), contact.Company);
+            FillFieldOnlyIfDataExists(By.Name("address"), contact.Address);
+            FillFieldOnlyIfDataExists(By.Name("home"), contact.PhoneHome);
+            FillFieldOnlyIfDataExists(By.Name("mobile"), contact.PhoneMobile);
+            FillFieldOnlyIfDataExists(By.Name("work"), contact.PhoneWork);
+            FillFieldOnlyIfDataExists(By.Name("fax"), contact.Fax);
+            FillFieldOnlyIfDataExists(By.Name("email"), contact.Email1);
+            FillFieldOnlyIfDataExists(By.Name("email2"), contact.Email2);
+            FillFieldOnlyIfDataExists(By.Name("email3"), contact.Email3);
+            FillFieldOnlyIfDataExists(By.Name("homepage"), contact.Homepage);
+            FillFieldOnlyIfDataExists(By.Name("address2"), contact.SecondAddress);
             SelectBirthday(contact);
             SelectAnniversaryDate(contact);
-            FillFieldOnlyIfDataExists("phone2", contact.PhoneHome2);
-            FillFieldOnlyIfDataExists("notes", contact.Notes);
+            FillFieldOnlyIfDataExists(By.Name("phone2"), contact.PhoneHome2);
+            FillFieldOnlyIfDataExists(By.Name("notes"), contact.Notes);
             
             driver.FindElement(By.CssSelector("input[type='submit']~input[type='submit']")).Click();
             return this;
         }
-
-        protected ContactHelper FillFieldOnlyIfDataExists(string fieldName, string contactData)
+        
+        protected ContactHelper FillFieldOnlyIfDataExists(By field, string contactData)
         {
-            if (contactData!=null)
+            if (contactData != null)
             {
-                driver.FindElement(By.Name(fieldName)).Clear();
-                driver.FindElement(By.Name(fieldName)).SendKeys(contactData);
+                driver.FindElement(field).Clear();
+                driver.FindElement(field).SendKeys(contactData);
             }
             return this;
         }
+
         protected ContactHelper SelectBirthday(ContactData contact)
         {
             driver.FindElement(By.Name("bday")).Click();
