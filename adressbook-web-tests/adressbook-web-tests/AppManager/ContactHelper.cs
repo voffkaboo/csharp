@@ -75,17 +75,7 @@ namespace WebAddressBookTests
             
             driver.FindElement(By.CssSelector("input[type='submit']~input[type='submit']")).Click();
             return this;
-        }
-        
-        protected ContactHelper FillFieldOnlyIfDataExists(By field, string contactData)
-        {
-            if (contactData != null)
-            {
-                driver.FindElement(field).Clear();
-                driver.FindElement(field).SendKeys(contactData);
-            }
-            return this;
-        }
+        }     
 
         protected ContactHelper SelectBirthday(ContactData contact)
         {

@@ -9,8 +9,8 @@ namespace WebAddressBookTests
         }
         public void Login(AccountData account)
         {
-            driver.FindElement(By.Name("user")).SendKeys(account.UserName);
-            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
+            FillFieldOnlyIfDataExists(By.Name("user"), account.UserName);
+            FillFieldOnlyIfDataExists(By.Name("pass"), account.Password);            
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();
         }
     }
