@@ -8,15 +8,7 @@ namespace WebAddressBookTests
         [SetUp]
         public void SetUp()
         {
-            app = new AppManager();
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-        }
-
-        [TearDown]
-        protected void TearDown()
-        {
-            app.Stop();
+            app = TestSuiteFixture.app;            
         }
     }
 }
