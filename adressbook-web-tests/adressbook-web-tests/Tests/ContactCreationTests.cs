@@ -3,7 +3,7 @@
 namespace WebAddressBookTests
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
         
         [Test]
@@ -33,7 +33,7 @@ namespace WebAddressBookTests
             user.AnniversaryMonth = "February";
             user.AnniversaryYear = "2018";
             app.Contact.FillContactForms(user);
-            app.Logout.Logout();
+            app.Auth.Logout();
         }                        
     }
 }

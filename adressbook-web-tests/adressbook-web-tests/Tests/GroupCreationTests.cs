@@ -3,7 +3,7 @@
 namespace WebAddressBookTests
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupCreationTests : AuthTestBase
     {
         
         [Test]
@@ -13,7 +13,7 @@ namespace WebAddressBookTests
                         
             app.Groups.Create(data);
             app.Navigator.ReturnToGroupPage();
-            app.Logout.Logout();
+            app.Auth.Logout();
         }                  
     }
 }

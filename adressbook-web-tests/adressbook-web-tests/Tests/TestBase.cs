@@ -5,10 +5,11 @@ namespace WebAddressBookTests
     public class TestBase
     {
         protected AppManager app;
+
         [SetUp]
-        public void SetUp()
+        public void SetUpAppManager()
         {
-            app = TestSuiteFixture.app;            
+            app = AppManager.GetInstance();
         }
     }
 }
