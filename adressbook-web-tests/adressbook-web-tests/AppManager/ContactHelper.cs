@@ -28,7 +28,7 @@ namespace WebAddressBookTests
         }
 
         internal ContactHelper Modify(int indexNumber, ContactData modifyData)
-        {
+        {            
             SelectContact(indexNumber);
             InitiateContactModification();
             FillContactForms(modifyData);
@@ -44,6 +44,7 @@ namespace WebAddressBookTests
 
         public ContactHelper SelectContact(int index)
         {
+            manager.Navigator.OpenHomePage();
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }       
