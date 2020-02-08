@@ -115,5 +115,11 @@ namespace WebAddressBookTests
             driver.FindElement(By.LinkText("add new")).Click();
             return this;
         }
+
+        public void Create(ContactData contact)
+        {
+            InitiateContactCreation();
+            FillContactForms(contact);            
+        }
     }
 }

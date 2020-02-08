@@ -7,6 +7,7 @@
         public string MiddleName { get; set; }
         public string FirstName { get; set; }
         public string NickName { get; set; }
+        public string PathToPhoto { get; set; }
         public string Title { get; set; }
         public string Company { get; set; }
         public string Address { get; set; }
@@ -26,12 +27,6 @@
         public string BirthYear { get; set; }
         public string AnniversaryDay { get; set; }
         public string AnniversaryMonth { get; set; }
-        public string AnniversaryYear { get; set; }
-        public ContactData(string firstname, string lastname, string middlename)
-        {
-            this.FirstName = firstname;
-            this.LastName = lastname;
-            this.MiddleName = middlename;
-        }
+        public string AnniversaryYear { get; set; }        
     }
 }

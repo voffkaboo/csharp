@@ -10,6 +10,6 @@ namespace WebAddressBookTests
         public void ContactRemovalTest()
         {
             app.Contact.RemoveCntactWithIndex(1);
-        }       
+        }
     }
 }

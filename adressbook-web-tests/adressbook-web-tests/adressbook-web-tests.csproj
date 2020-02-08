@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bogus, Version=28.4.4.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.28.4.4\lib\net40\Bogus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -61,23 +65,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppManager\AppManager.cs" />
+    <Compile Include="Builders\ContactBuilder.cs" />
+    <Compile Include="Builders\ContactFixtureBuilder.cs" />
+    <Compile Include="Builders\GroupBuilder.cs" />
+    <Compile Include="Builders\GroupFixtureBuilder.cs" />
     <Compile Include="Tests\AuthTestBase.cs" />
-    <Compile Include="Tests\ContactCreationTests.cs" />
+    <Compile Include="Tests\ContactTests\ContactCreationTests.cs" />
     <Compile Include="Model\AccountData.cs" />
     <Compile Include="AppManager\ContactHelper.cs" />
-    <Compile Include="Tests\ContactModificationTests.cs" />
-    <Compile Include="Tests\ContactRemovalTests.cs" />
+    <Compile Include="Tests\ContactTests\ContactModificationTests.cs" />
+    <Compile Include="Tests\ContactTests\ContactRemovalTests.cs" />
     <Compile Include="Model\GroupData.cs" />
     <Compile Include="AppManager\GroupHelper.cs" />
-    <Compile Include="Tests\GroupModificationTests.cs" />
-    <Compile Include="Tests\GroupRemovalTests.cs" />
+    <Compile Include="Tests\GroupTests\GroupModificationTests.cs" />
+    <Compile Include="Tests\GroupTests\GroupRemovalTests.cs" />
     <Compile Include="AppManager\HelperBase.cs" />
     <Compile Include="AppManager\LoginHelper.cs" />
     <Compile Include="AppManager\NavigationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\GroupCreationTests.cs" />
+    <Compile Include="Tests\GroupTests\GroupCreationTests.cs" />
     <Compile Include="Model\ContactData.cs" />
-    <Compile Include="Tests\LoginTests.cs" />
+    <Compile Include="Tests\LoginTests\LoginTests.cs" />
     <Compile Include="Tests\TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +96,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

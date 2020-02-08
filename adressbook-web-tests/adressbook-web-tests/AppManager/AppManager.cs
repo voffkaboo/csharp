@@ -12,7 +12,9 @@ namespace WebAddressBookTests
         protected NavigationHelper navigationHelper;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
-        
+        protected GroupBuilder groupBuilder;
+        protected ContactBuilder contactBuilder;
+
 
         private static ThreadLocal<AppManager> app= new ThreadLocal<AppManager>();
 
@@ -23,7 +25,8 @@ namespace WebAddressBookTests
             navigationHelper = new NavigationHelper(this);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
-           
+            groupBuilder = new GroupBuilder(this);
+            contactBuilder = new ContactBuilder(this);
         }
         ~AppManager()
         {
@@ -43,6 +46,8 @@ namespace WebAddressBookTests
         public LoginHelper Auth => loginHelper;
         public NavigationHelper Navigator => navigationHelper;
         public GroupHelper Groups => groupHelper;
-        public ContactHelper Contact => contactHelper;                
+        public ContactHelper Contact => contactHelper;
+        public GroupBuilder GroupBuilder => groupBuilder;
+        public ContactBuilder ContactBuilder => contactBuilder;
     }
 }

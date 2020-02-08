@@ -10,7 +10,7 @@ namespace WebAddressBookTests
         public void ContactCreationTest()
         {
             app.Contact.InitiateContactCreation();
-            ContactData user = new ContactData("FirstNameTest", "SecondNameTest","MiddleNameTest");
+            ContactData user = new ContactData();
             user.NickName = "CreatedNickname";
             user.Title = "CreatedTitle";
             user.Company = "CreatedCompany";
@@ -34,6 +34,9 @@ namespace WebAddressBookTests
             user.AnniversaryYear = "2018";
             app.Contact.FillContactForms(user);
             app.Auth.Logout();
-        }                        
+        }
+
+        [Test]
+        public void CreateContactTestv2() => app.ContactBuilder.Build();
     }
 }
