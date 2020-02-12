@@ -68,12 +68,25 @@ namespace WebAddressBookTests
             return this;
         }
 
-        public GroupHelper SelectGroup(int index)
+       public GroupHelper SelectGroup(int index)
         {
             manager.Navigator.GoToGroupsPage();
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            return this;
+            if (IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
+            {
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                return this;
+            }
+            else
+            {
+                for (int i = 0; i <= index; i++)
+                {
+                    manager.ContactBuilder.Build();
+                }
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                return this;
+            }
         }
+
         public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.Name("delete")).Click();

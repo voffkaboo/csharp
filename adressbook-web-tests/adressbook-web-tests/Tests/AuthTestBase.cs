@@ -10,5 +10,10 @@ namespace WebAddressBookTests
             app.Auth.Login(new AccountData("admin", "secret"));
         }
 
+        [TearDown]
+        public void LogOut()
+        {
+            app.Auth.Logout();
+        }
     }
 }

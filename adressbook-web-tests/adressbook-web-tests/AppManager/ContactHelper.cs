@@ -45,10 +45,31 @@ namespace WebAddressBookTests
         public ContactHelper SelectContact(int index)
         {
             manager.Navigator.OpenHomePage();
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            return this;
-        }       
-                
+            if (IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
+            {
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                return this;
+            }
+            else
+            {
+                for (int i = 0; i <= index; i++)
+                {
+                    manager.ContactBuilder.Build();
+                }
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                return this;
+            }
+        }
+        public void GoToGroupsPage()
+        {
+            if (driver.Url == "http://localhost/addressbook/group.php"
+                && IsElementPresent(By.Name("new")))
+            {
+                return;
+            }
+            driver.FindElement(By.LinkText("groups")).Click();
+        }
+
         public ContactHelper FillContactForms(ContactData contact)
         {
             FillFieldOnlyIfDataExists(By.Name("firstname"), contact.FirstName);
