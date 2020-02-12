@@ -80,7 +80,7 @@ namespace WebAddressBookTests
             {
                 for (int i = 0; i <= index; i++)
                 {
-                    manager.ContactBuilder.Build();
+                    manager.GroupBuilder.Build();
                 }
                 driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
                 return this;
