@@ -44,7 +44,7 @@ namespace WebAddressBookTests
 
         public ContactHelper SelectContact(int index)
         {
-            manager.Navigator.OpenHomePage();
+            manager.Navigator.OpenHomePage();            
             if (IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
             {
                 driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
@@ -52,11 +52,9 @@ namespace WebAddressBookTests
             }
             else
             {
-                for (int i = 0; i <= index; i++)
-                {
-                    manager.ContactBuilder.Build();
-                }
-                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                manager.ContactBuilder.WithFirstName("createdCauseNoPrviousGroups").Build();
+                manager.Navigator.OpenHomePage();
+                driver.FindElement(By.Name("selected[]")).FindElement(By.XPath("//table[@id='maintable']//td[contains(text(),'createdCauseNoPrviousGroups')]")).Click();
                 return this;
             }
         }

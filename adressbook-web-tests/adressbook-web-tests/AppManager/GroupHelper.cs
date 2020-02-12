@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 
 namespace WebAddressBookTests
@@ -77,12 +78,10 @@ namespace WebAddressBookTests
                 return this;
             }
             else
-            {
-                for (int i = 0; i <= index; i++)
-                {
-                    manager.GroupBuilder.Build();
-                }
-                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            {               
+                manager.GroupBuilder.WithName("createdCauseNoPrviousGroups").Build();
+                manager.Navigator.GoToGroupsPage();
+                driver.FindElement(By.Name("selected[]")).FindElement(By.XPath("//input[@title='Select (createdCauseNoPrviousGroups)']")).Click();                
                 return this;
             }
         }

@@ -9,7 +9,7 @@ namespace WebAddressBookTests
         public void GroupModificationTestV2()
         {
             var modifyData = new GroupFixtureBuilder().Build();
-            app.Groups.Modify(1, modifyData);
+            app.Groups.Modify(0, modifyData);
         }
     }
 }
