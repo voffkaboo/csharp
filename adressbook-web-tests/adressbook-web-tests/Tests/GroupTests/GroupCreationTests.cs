@@ -6,7 +6,7 @@ namespace WebAddressBookTests
     public class GroupCreationTests : AuthTestBase
     {
         [Test]
-        public void GroupCreationTestV2()
+        public void GroupCreationTest()
         {
             app.GroupBuilder
                 .WithName("aaa")

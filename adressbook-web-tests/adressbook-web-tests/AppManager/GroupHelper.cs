@@ -78,8 +78,12 @@ namespace WebAddressBookTests
                 return this;
             }
             else
-            {               
-                manager.GroupBuilder.WithName("createdCauseNoPrviousGroups").Build();
+            {
+
+                for (int i = 0; i <= index; i++)
+                {
+                    manager.GroupBuilder.WithName("createdCauseNoPrviousGroups").Build();
+                }
                 manager.Navigator.GoToGroupsPage();
                 driver.FindElement(By.Name("selected[]")).FindElement(By.XPath("//input[@title='Select (createdCauseNoPrviousGroups)']")).Click();                
                 return this;

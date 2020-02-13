@@ -6,7 +6,7 @@ namespace WebAddressBookTests
     public class GroupModificationTests : AuthTestBase
     {
         [Test]
-        public void GroupModificationTestV2()
+        public void GroupModificationTest()
         {
             var modifyData = new GroupFixtureBuilder().Build();
             app.Groups.Modify(0, modifyData);

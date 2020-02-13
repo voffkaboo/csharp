@@ -9,7 +9,7 @@ namespace WebAddressBookTests
         [Test]
         public void GroupRemovalTest()
         {
-            app.Groups.RemoveGroup(1);        
+            app.Groups.RemoveGroup(0);        
         }                    
     }
 }

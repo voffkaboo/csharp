@@ -6,9 +6,9 @@ namespace WebAddressBookTests
     public class ContactModificationTests : AuthTestBase
     {
         [Test]
-        public void ContactModificationTestV2()
+        public void ContactModificationTest()
         {
-            int contactIndex = 1;
+            int contactIndex = 0;
             var contactModel = new ContactFixtureBuilder().Build();
             app.Contact.Modify(contactIndex, contactModel);
         }

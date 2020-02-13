@@ -52,12 +52,16 @@ namespace WebAddressBookTests
             }
             else
             {
-                manager.ContactBuilder.WithFirstName("createdCauseNoPrviousGroups").Build();
+                for (int i = 0; i <= index; i++)
+                {
+                    manager.ContactBuilder.WithFirstName("createdCauseNoPrviousGroups").Build();                    
+                }
                 manager.Navigator.OpenHomePage();
-                driver.FindElement(By.Name("selected[]")).FindElement(By.XPath("//table[@id='maintable']//td[contains(text(),'createdCauseNoPrviousGroups')]")).Click();
+                driver.FindElement(By.XPath("//table[@id='maintable']//td[contains(text(),'createdCauseNoPrviousGroups')]")).Click();
                 return this;
             }
         }
+
         public void GoToGroupsPage()
         {
             if (driver.Url == "http://localhost/addressbook/group.php"
