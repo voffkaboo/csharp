@@ -13,6 +13,11 @@ namespace WebAddressBookTests
             this.contactModel = CreateDefaultModel();
         }
 
+        public static ContactFixtureBuilder CreateNew()
+        {
+            return new ContactFixtureBuilder();
+        }
+
         public ContactFixtureBuilder WithFirstName(string firstName)
         {
             this.contactModel.FirstName = firstName;

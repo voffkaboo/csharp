@@ -2,13 +2,13 @@
 
 namespace WebAddressBookTests
 {
-    [TestFixture]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class GroupModificationTests : AuthTestBase
     {
         [Test]
         public void GroupModificationTest()
         {
-            var modifyData = new GroupFixtureBuilder().Build();
+            var modifyData = GroupFixtureBuilder.CreateNew().Build();
             app.Groups.Modify(0, modifyData);
         }
     }

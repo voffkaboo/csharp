@@ -11,6 +11,12 @@ namespace WebAddressBookTests
         {
             this.groupModel = CreateDefaultModel();
         }
+
+        public static GroupFixtureBuilder CreateNew()
+        {
+            return new GroupFixtureBuilder();
+        }
+
         public GroupFixtureBuilder WithName(string name)
         {
             this.groupModel.Name = name;

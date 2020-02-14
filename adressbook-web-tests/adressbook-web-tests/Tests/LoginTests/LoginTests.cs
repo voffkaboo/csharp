@@ -2,7 +2,7 @@
 
 namespace WebAddressBookTests
 {
-    [TestFixture]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class LoginTests : TestBase
     {
         [Test]

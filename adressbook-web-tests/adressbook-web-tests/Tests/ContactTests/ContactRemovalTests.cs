@@ -2,14 +2,14 @@
 
 namespace WebAddressBookTests 
 {
-    [TestFixture]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class ContactRemovalTests : AuthTestBase
     {
         
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contact.RemoveCntactWithIndex(1);
+            app.Contact.RemoveCntactWithIndex(0);
         }
     }
 }

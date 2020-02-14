@@ -2,14 +2,14 @@
 
 namespace WebAddressBookTests
 {
-    [TestFixture]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class ContactModificationTests : AuthTestBase
     {
         [Test]
         public void ContactModificationTest()
         {
             int contactIndex = 0;
-            var contactModel = new ContactFixtureBuilder().Build();
+            var contactModel = ContactFixtureBuilder.CreateNew().Build();
             app.Contact.Modify(contactIndex, contactModel);
         }
     }

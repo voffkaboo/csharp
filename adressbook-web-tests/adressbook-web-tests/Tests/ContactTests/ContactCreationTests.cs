@@ -2,10 +2,10 @@
 
 namespace WebAddressBookTests
 {
-    [TestFixture]
+    [Parallelizable(ParallelScope.Fixtures)]
     public class ContactCreationTests : AuthTestBase
     {
         [Test]
-        public void CreateContactTestv2() => app.ContactBuilder.Build();
+        public void CreateContactTest() => app.ContactBuilder.Build();
     }
 }
